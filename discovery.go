@@ -39,10 +39,10 @@ func discoveryPOSTHandler(w http.ResponseWriter, r *http.Request) { // TODO: Han
             <AuthPolicy>OnPremise</AuthPolicy>
             <EnrollmentVersion>4.0</EnrollmentVersion>
             <EnrollmentPolicyServiceUrl>
-              https://mdm.otbeaumont.me/EnrollmentServer/PolicyService.svc
+              https://winmdm.stg.mobileguardian.com/winmdm/EnrollmentServer/PolicyService.svc
             </EnrollmentPolicyServiceUrl>
             <EnrollmentServiceUrl>
-              https://mdm.otbeaumont.me/EnrollmentServer/EnrollmentService.svc
+              https://winmdm.stg.mobileguardian.com/winmdm/EnrollmentServer/EnrollmentService.svc
             </EnrollmentServiceUrl>
           </DiscoverResult>
         </DiscoverResponse>
