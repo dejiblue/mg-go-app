@@ -12,7 +12,7 @@ import (
 
 // The Function Run When The Server Starts
 func main() {
-	log.Println("We now Started Windows MDM Server On Port 8000")
+	log.Println("We Started Windows MDM Server On Port 8000")
 	router := way.NewRouter()
 
 	// The HTTP Routes
