@@ -18,8 +18,8 @@ func main() {
 	router.HandleFunc("GET", "/", indexHandler)                                                       // main.go
 	router.HandleFunc("GET", "/EnrollmentServer/Discovery.svc", discoveryGETHandler)                  // discovery.go
 	router.HandleFunc("POST", "/EnrollmentServer/Discovery.svc", discoveryPOSTHandler)                // discovery.go
-	//router.HandleFunc("POST", "/EnrollmentServer/PolicyService.svc", enrollmentPolicyHandler)         // enrollment.go
-	//router.HandleFunc("POST", "/EnrollmentServer/EnrollmentService.svc", enrollmentWebServiceHandler) // enrollment.go
+	router.HandleFunc("POST", "/EnrollmentServer/PolicyService.svc", enrollmentPolicyHandler)         // enrollment.go
+	router.HandleFunc("POST", "/EnrollmentServer/EnrollmentService.svc", enrollmentWebServiceHandler) // enrollment.go
 	//router.HandleFunc("POST", "/EnrollmentServer/DeviceEnrollment.svc", ) // enrollment.go
 
 	router.NotFound = http.HandlerFunc(notFoundHandler) // main.go
