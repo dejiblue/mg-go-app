@@ -7,7 +7,6 @@ import (
 
 	"github.com/matryer/way"
 	_ "github.com/motemen/go-loghttp/global"
-	"github.com/antchfx/xquery/xml"
 )
 
 // The Function Run When The Server Starts
