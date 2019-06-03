@@ -12,7 +12,7 @@ import (
 
 // The Function Run When The Server Starts
 func main() {
-	log.Println("We Started Windows MDM Server On Port 8000")
+	log.Println("We Started Windows MDM GoLang Server On Port 8000")
 	router := way.NewRouter()
 
 	// The HTTP Routes
@@ -59,7 +59,7 @@ func discoveryGETHandler(w http.ResponseWriter, r *http.Request) {
 
 // Return the locations of the MDM server
 func discoveryPOSTHandler(w http.ResponseWriter, r *http.Request) { // TODO: Handle The Device Trying To Join - Valid Windows Version, Authentication, etc
-  log.Println("Discovery POST Request")
+  log.Println("The Discovery POST Request")
 	soapBody, err := xmlquery.Parse(r.Body)
 	if err != nil {
 		panic(err)
