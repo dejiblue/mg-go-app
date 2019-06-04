@@ -18,4 +18,4 @@
 certs/
 
 # Ignore The Private Keys For My CA Signing Certificate
-depot/*.key
+# depot/*.key
