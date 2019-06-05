@@ -39,6 +39,7 @@ func SignCert(raw []byte) ([]byte, []byte, string) {
 	*/
 
 	//Load The CA Cert
+	log.Println("Loading Depot ca pem")
 	rawCert := getPemFromFile("depot/ca.pem")
 	ca, err := x509.ParseCertificate(rawCert.Bytes)
 	if err != nil {
@@ -50,7 +51,11 @@ func SignCert(raw []byte) ([]byte, []byte, string) {
 	//////////////////////////////////
 
 	// Decode The Certificate Request
+	log.Println("Decoding the Certificate Request")
 	formatted := append(append([]byte("-----BEGIN CERTIFICATE REQUEST-----\n"), raw...), []byte("\n-----END CERTIFICATE REQUEST-----\n")...)
+	log.Println("Successfully appended the formatted variable")
+	log.Println(formatted)
+	log.Println(pem.Decode(formatted))
 	p, _ := pem.Decode(formatted)
 	if p == nil {
 		log.Panic("Error Parsing The Devices PEM")
