@@ -108,6 +108,7 @@ func enrollmentPolicyHandler(w http.ResponseWriter, r *http.Request) { // TODO: 
 
 //
 func enrollmentWebServiceHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("Enrollment Service Post Request")
 	soapBody, err := xmlquery.Parse(r.Body)
 	if err != nil {
 		panic(err)
@@ -117,10 +118,11 @@ func enrollmentWebServiceHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println(binarySecurityToken)
 
 	// Sign The Clients Certificate Request
+	log.Println("Signing the client certificate request")
 	clientCertRaw, CaCertRaw, CaSubject := SignCert([]byte(binarySecurityToken))
 	//Cert := base64.StdEncoding.EncodeToString(CertRaw)
 	//CaCert := base64.StdEncoding.EncodeToString(CaCertRaw)
-
+  log.Println("Was able to sign the client certificate")
 	log.Println(CaSubject)
 
 	// Construct The Response's Payload

@@ -25,6 +25,7 @@ func getPemFromFile(path string) *pem.Block {
 
 func SignCert(raw []byte) ([]byte, []byte, string) {
 	// Load CA Key
+	log.Println("Attempting to Sign client certificate")
 	rawPrivKey := getPemFromFile("depot/ca-unencypted.key")
 	key, err := x509.ParsePKCS1PrivateKey(rawPrivKey.Bytes)
 	if err != nil {
