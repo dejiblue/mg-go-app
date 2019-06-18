@@ -10,7 +10,6 @@ import (
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 
-  "github.com/oscartbeaumont/windows_mdm/mdm/windows/types"
 	"github.com/oscartbeaumont/windows_mdm/mdm/windows/wstep"
 )
 
@@ -102,56 +101,4 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 // EnrollHandler will initiate the enrollment process from a web broswer on a Windows machine.
 func EnrollHandler(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "ms-device-enrollment:?mode=mdm&username=example@"+config.Domain, 301) // FUTURE: Mess around with with &accesstoken=boop
-}
-
-func DiscoveryHandler(ConfigDomain string) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		// If the method is GET tell the client the server exists with a 200 response. Else the request is a POST return the server configuration.
-		if r.Method == http.MethodGet {
-			log.Println("Discovery GET Handler")
-			w.WriteHeader(http.StatusOK)
-			return
-		}
-
-    log.Println("Discovery POST Handler")
-		// Decode The HTTP Request Body From The Client To The cmd varible using the struct defined above.
-		var cmd windowstype.MdeDiscoveryRequest
-		if err := cmd.Decode(r.Body); err != nil {
-			panic(err) // TODO: Error Handling
-		}
-
-		// Use the verify function provided by the type to check it is correct
-		if err := cmd.Verify(); err != nil {
-			panic(err) // TODO: Error Handling
-		}
-
-		// Verify the server is the one the device thinks it is talking to. This is to prevent someone implementing a proxy with a different domain.
-		// TODO: log.Println(cmd.Header.To.Host)
-
-		// Verify the users email address is valid for the server's userbase.
-		// TODO: log.Println(cmd.Body.Discover.Request.EmailAddress)
-
-		// Log Action
-		log.Println("User: " + cmd.Body.Discover.Request.EmailAddress + " Action: Discovery")
-
-		// Create Response
-		res := windowstype.Envelope{
-			S:      "http://www.w3.org/2003/05/soap-envelope",
-			A:      "http://www.w3.org/2005/08/addressing",
-			Header: windowstype.NewHeader("http://schemas.microsoft.com/windows/management/2012/01/enrollment/IDiscoveryService/DiscoverResponse", cmd.Header.MessageID),
-			Body: windowstype.Body{
-				MdeDiscoveryResponse: windowstype.MdeDiscoveryResponse{
-					AuthPolicy:                 "OnPremise",
-					EnrollmentVersion:          "4.0",
-					EnrollmentPolicyServiceURL: "https://" + ConfigDomain + "/EnrollmentServer/PolicyService.svc",     // TODO: Use propper url package for generation
-					EnrollmentServiceURL:       "https://" + ConfigDomain + "/EnrollmentServer/EnrollmentService.svc", // TODO: Use propper url package for generation
-				},
-			},
-		}
-
-		// Send Response To The Client
-		if err := res.Encode(w); err != nil {
-			panic(err) // TODO: Error Handling
-		}
-	}
 }
