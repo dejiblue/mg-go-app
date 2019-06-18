@@ -36,7 +36,7 @@ var config = struct {
 	ProfileName   string
 	Subject       pkix.Name // The Identity CA Subject
 }{
-	Domain:        "mdm.otbeaumont.me",
+	Domain:        "winmdm.stg.mobileguardian.com/winmdm",
 	//HTTPSCertPath: "./certs/https.cert",
 	//HTTPSKeyPath:  "./certs/https.key",
 	ProfileName:   "Oscar's Demo",
@@ -75,9 +75,9 @@ func main() {
 	// r.Path("/EnrollmentServer/DeviceEnrollment.svc").Methods("POST").HandlerFunc(DeviceEnrollmentHandler()) // mdm-discovery.go
 
 	// Print to screen and start listening over https using the router defined above
-	log.Println("Listening at :9000 and at domain " + config.Domain)
+	log.Println("Listening at :8000 and at domain " + config.Domain)
 	//log.Fatal(http.ListenAndServeTLS(":9000", config.HTTPSCertPath, config.HTTPSKeyPath, handlers.LoggingHandler(os.Stdout, global(r))))
-	log.Fatalln(http.ListenAndServe(":9000", handlers.LoggingHandler(os.Stdout, global(r))))
+	log.Fatalln(http.ListenAndServe(":8000", handlers.LoggingHandler(os.Stdout, global(r))))
 }
 
 // global is a basic HTTP middleware. It set some HTTP headers on all of the requests.
