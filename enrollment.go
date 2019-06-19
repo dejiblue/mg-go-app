@@ -20,11 +20,13 @@ import (
 func enrollmentPolicyHandler(w http.ResponseWriter, r *http.Request) { // TODO: Authentication, etc
 	log.Println("+++++++++++++++++ Enrollment Policy POST Request ++++++++++++++++++")
 	log.Println(r)
-	log.Println("++++++++++++++ END OF Enrollment Policy POST Request ++++++++++++++")
+	log.Println("++++++++++++++ After Dumping of R ++++++++++++++")
 	soapBody, err := xmlquery.Parse(r.Body)
+	log.Println(soapBody.OutputXML(true))
 	if err != nil {
 		panic(err)
 	}
+	log.Println("++++++++++++++ END OF Enrollment Policy POST Request ++++++++++++++")
 	MessageID := xmlquery.FindOne(soapBody, "//s:Header/a:MessageID").InnerText()
 
 	// Send The Response
@@ -113,11 +115,13 @@ func enrollmentPolicyHandler(w http.ResponseWriter, r *http.Request) { // TODO: 
 func enrollmentWebServiceHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("+++++++++++++++++ Enrollment Service POST Request ++++++++++++++++++")
 	log.Println(r)
-	log.Println("++++++++++++++ END OF Enrollment Service POST Request ++++++++++++++")
+	log.Println("++++++++++++++ After Dumping of R ++++++++++++++")
 	soapBody, err := xmlquery.Parse(r.Body)
+	log.Println(soapBody.OutputXML(true))
 	if err != nil {
 		panic(err)
 	}
+	log.Println("++++++++++++++ END OF Enrollment Service POST Request ++++++++++++++")
 	MessageID := xmlquery.FindOne(soapBody, "//s:Header/a:MessageID").InnerText()
 	binarySecurityToken := xmlquery.FindOne(soapBody, "//s:Body/wst:RequestSecurityToken/wsse:BinarySecurityToken").InnerText()
 	log.Println(binarySecurityToken)
@@ -139,8 +143,10 @@ func enrollmentWebServiceHandler(w http.ResponseWriter, r *http.Request) {
 
 	log.Println("")
 	log.Println("1)")
+  log.Println("++++++++++++++ ROOT CERT ++++++++++++++")
 	log.Println(rootCert)
 	log.Println("2)")
+  log.Println("++++++++++++++ CA CERT RAW ++++++++++++++")
 	log.Println(base64.StdEncoding.EncodeToString(CaCertRaw))
 	log.Println("")
 

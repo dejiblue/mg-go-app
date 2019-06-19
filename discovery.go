@@ -19,11 +19,13 @@ func discoveryGETHandler(w http.ResponseWriter, r *http.Request) {
 func discoveryPOSTHandler(w http.ResponseWriter, r *http.Request) { // TODO: Handle The Device Trying To Join - Valid Windows Version, Authentication, etc
   log.Println("+++++++++++++++++ Discovery POST Request ++++++++++++++++++")
 	log.Println(r)
-	log.Println("++++++++++++++ END OF Discovery POST Request ++++++++++++++")
+	log.Println("++++++++++++++ Dumping value of R ++++++++++++++")
 	soapBody, err := xmlquery.Parse(r.Body)
+	log.Println(soapBody.OutputXML(true))
 	if err != nil {
 		panic(err)
 	}
+	log.Println("++++++++++++++ END OF Discovery POST Request ++++++++++++++")
 	MessageID := xmlquery.FindOne(soapBody, "//s:Header/a:MessageID").InnerText()
 
 // 	// Send The Response
