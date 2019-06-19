@@ -192,8 +192,8 @@ func enrollmentWebServiceHandler(w http.ResponseWriter, r *http.Request) {
      <!-- Link to an application that the management service may provide eg a Windows Store application link. The Enrollment Client may show this link in its UX.-->
      <parm name="SSPHyperlink" value="http://go.microsoft.com/fwlink/?LinkId=255310" />
      <!-- Management Service URL. -->
-     <parm name="ADDR" value="https://mdm.otbeaumont.me/MDMHandlerADDR"/>
-     <parm name="ServerList" value="https://mdm.otbeaumont.me/MDMHandlerServerList" />
+     <parm name="ADDR" value="https://winmdm.stg.mobileguardian.com/winmdm/MDMHandlerADDR"/>
+     <parm name="ServerList" value="https://winmdm.stg.mobileguardian.com/winmdm/MDMHandlerServerList" />
      <parm name="ROLE" value="4294967295"/>
      <!-- Discriminator to set whether the client should do Certificate Revocation List checking. -->
      <parm name="CRLCheck" value="0"/>

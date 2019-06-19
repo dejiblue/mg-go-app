@@ -20,6 +20,7 @@ func main() {
 	router.HandleFunc("POST", "/EnrollmentServer/Discovery.svc", discoveryPOSTHandler)                // discovery.go
 	router.HandleFunc("POST", "/EnrollmentServer/PolicyService.svc", enrollmentPolicyHandler)         // enrollment.go
 	router.HandleFunc("POST", "/EnrollmentServer/EnrollmentService.svc", enrollmentWebServiceHandler) // enrollment.go
+	router.HandleFunc("POST", "/MDMHandlerADDR", mdmSyncHandler) // enrollment.go
 	//router.HandleFunc("POST", "/EnrollmentServer/DeviceEnrollment.svc", ) // enrollment.go
 
 	router.NotFound = http.HandlerFunc(notFoundHandler) // main.go
@@ -31,6 +32,11 @@ func main() {
 // The Response To Access The Index Page (Just A Placeholder)
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Demo Windows MDM Server!"))
+}
+
+func mdmSyncHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("MDM SYNC HANDLER")
+	w.Write([]byte(""))
 }
 
 // The Response To Known Web Routes
