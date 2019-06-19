@@ -114,7 +114,6 @@ func enrollmentWebServiceHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("+++++++++++++++++ Enrollment Service POST Request ++++++++++++++++++")
 	log.Println(r)
 	log.Println("++++++++++++++ END OF Enrollment Service POST Request ++++++++++++++")
-	Enrollment Policy POST Request
 	soapBody, err := xmlquery.Parse(r.Body)
 	if err != nil {
 		panic(err)
