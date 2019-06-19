@@ -18,6 +18,9 @@ import (
 
 //
 func enrollmentPolicyHandler(w http.ResponseWriter, r *http.Request) { // TODO: Authentication, etc
+	log.Println("+++++++++++++++++ Enrollment Policy POST Request ++++++++++++++++++")
+	log.Println(r)
+	log.Println("++++++++++++++ END OF Enrollment Policy POST Request ++++++++++++++")
 	soapBody, err := xmlquery.Parse(r.Body)
 	if err != nil {
 		panic(err)
@@ -108,7 +111,10 @@ func enrollmentPolicyHandler(w http.ResponseWriter, r *http.Request) { // TODO: 
 
 //
 func enrollmentWebServiceHandler(w http.ResponseWriter, r *http.Request) {
-	log.Println("Enrollment Service Post Request")
+	log.Println("+++++++++++++++++ Enrollment Service POST Request ++++++++++++++++++")
+	log.Println(r)
+	log.Println("++++++++++++++ END OF Enrollment Service POST Request ++++++++++++++")
+	Enrollment Policy POST Request
 	soapBody, err := xmlquery.Parse(r.Body)
 	if err != nil {
 		panic(err)

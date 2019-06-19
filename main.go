@@ -35,12 +35,12 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func mdmSyncHandler(w http.ResponseWriter, r *http.Request) {
-	log.Println("MY SYNC HANDLER")
+	log.Println("+++++++++++++++ MY SYNC HANDLER +++++++++++++++")
 	// soapBody, err := xmlquery.Parse(r.Body)
 	// if err != nil {
 	// 	panic(err)
 	// }
-	//log.Println(r)
+	log.Println(r)
 	w.Write([]byte(""))
 }
 
