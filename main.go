@@ -7,7 +7,6 @@ import (
 
 	"github.com/matryer/way"
 	_ "github.com/motemen/go-loghttp/global"
-	"github.com/antchfx/xquery/xml"
 )
 
 // The Function Run When The Server Starts
@@ -36,12 +35,12 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func mdmSyncHandler(w http.ResponseWriter, r *http.Request) {
-	log.Println("MDM SYNC HANDLER")
-	soapBody, err := xmlquery.Parse(r.Body)
-	if err != nil {
-		panic(err)
-	}
-	log.Println(soapBody)
+	log.Println("MY SYNC HANDLER")
+	// soapBody, err := xmlquery.Parse(r.Body)
+	// if err != nil {
+	// 	panic(err)
+	// }
+	//log.Println(r)
 	w.Write([]byte(""))
 }
 
